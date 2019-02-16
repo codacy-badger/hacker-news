@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const axios = require('axios');
 const schedule = require('node-schedule');
+const cors = require('cors');
 const { DatabaseConfig } = require('./src/database');
 const { 
     HackerNewsRouter, 
@@ -15,6 +16,7 @@ const {
 
 
 const app = express();
+app.use( cors({ origin: true }) );
 
 const databaseConfig = DatabaseConfig({ mongoose });
 databaseConfig.connect();
