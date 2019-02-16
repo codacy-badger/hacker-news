@@ -11,8 +11,13 @@ const service = ({ HackerNews }) => ({
                 createdAt:  data.createdAt
             });
             hackerNews.save();
-            console.log(hackerNews);
         }
+        return dataSaved;
+    },
+
+    get: async() => {
+        const data = await HackerNews.find({}).exec();
+        return data;
     }
 
 });

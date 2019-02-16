@@ -19,9 +19,9 @@ const app = express();
 const databaseConfig = DatabaseConfig({ mongoose });
 databaseConfig.connect();
 
-const hackerNewsRouter = HackerNewsRouter({ });
-const hackerNewsProxyService = HackerNewsProxyService({ axios });
 const hackerNewsDatabaseService = HackerNewsDatabaseService({ HackerNews });
+const hackerNewsRouter = HackerNewsRouter({ hackerNewsDatabaseService });
+const hackerNewsProxyService = HackerNewsProxyService({ axios });
 const hackerNewsService = HackerNewsService({ hackerNewsProxyService, hackerNewsDatabaseService });
 const hackerNewsScheduleService = HackerNewsScheduleService({ schedule, hackerNewsService });
 

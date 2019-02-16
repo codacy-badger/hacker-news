@@ -1,11 +1,10 @@
-const HackerNews = require('./hacker-news.model');
-
-const controller = ({  }) => ({
+const router = ({ hackerNewsDatabaseService }) => ({
+    
     get: async(req, res) => {
-        const result = await HackerNews.find({}).exec();
-
-        res.send(result)
+        const result = await hackerNewsDatabaseService.get();
+        res.send(result);
     },
+
     delete: (req, res) => {
         const { id } = req.params;
         
@@ -13,4 +12,4 @@ const controller = ({  }) => ({
     }
 })
 
-module.exports = controller;
+module.exports = router;

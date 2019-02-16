@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    api: 'https://us-central1-hacker-news-ever.cloudfunctions.net/api'
 };
