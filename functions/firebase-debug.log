@@ -1,0 +1,28 @@
+[debug] [2019-02-16T15:22:27.825Z] ----------------------------------------------------------------------
+[debug] [2019-02-16T15:22:27.827Z] Command:       /Users/Ever/.nvm/versions/node/v11.9.0/bin/node /Users/Ever/.nvm/versions/node/v11.9.0/bin/firebase serve --only functions
+[debug] [2019-02-16T15:22:27.827Z] CLI Version:   6.3.1
+[debug] [2019-02-16T15:22:27.827Z] Platform:      darwin
+[debug] [2019-02-16T15:22:27.827Z] Node Version:  v11.9.0
+[debug] [2019-02-16T15:22:27.828Z] Time:          Sat Feb 16 2019 12:22:27 GMT-0300 (GMT-03:00)
+[debug] [2019-02-16T15:22:27.828Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-16T15:22:27.842Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-16T15:22:27.842Z] > authorizing via signed-in user
+[debug] [2019-02-16T15:22:27.842Z] [iam] checking project hacker-news-ever for permissions ["firebase.projects.get"]
+[debug] [2019-02-16T15:22:27.844Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/hacker-news-ever:testIamPermissions  
+
+[debug] [2019-02-16T15:22:28.960Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-16T15:22:28.962Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/hacker-news-ever  
+ 
+[debug] [2019-02-16T15:22:30.083Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Ever/Desarrollo/Profaner/hacker-news'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2019-02-16T15:22:30.661Z] Fetching environment
+[debug] [2019-02-16T15:22:30.663Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/166292716557:getServerAppConfig  
+ 
+[debug] [2019-02-16T15:22:30.938Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-16T15:22:30.938Z] Starting @google-cloud/functions-emulator
+[debug] [2019-02-16T15:22:32.497Z] Parsing function triggers
+[info] ✔  functions: api: http://localhost:5000/hacker-news-ever/us-central1/api

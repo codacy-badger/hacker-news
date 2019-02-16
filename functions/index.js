@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const express = require('express');
+const { HackerNewsHandler } = require('./src/hacker-news')
 const mongoose = require('mongoose');
 const axios = require('axios');
 
@@ -7,27 +8,12 @@ mongoose.connect('mongodb://ealiaga:EvrEvrEvr@cluster0-shard-00-00-6zdiu.gcp.mon
 
 const app = express();
 
-const HackerNews = require('./models/HackerNews');
+const hackerNewsHandler = HackerNewsHandler({ axios });
 
 const createServer = () => {
-    app.get('/hacker-news/external', async(req, res) => {
-        const { data }   = await axios.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs');
-
-        res.send(data)
-    })
-
-    app.get('/hacker-news', async(req, res) => {
-        const result = await HackerNews.find({}).exec();
-
-        res.send(result)
-    })
-
-    app.get('/hacker-news/:id/delete', (req, res) => {
-        const { id } = req.params;
-        
-        res.send(result)
-    })
-
+    app.get('/hacker-news/external', hackerNewsHandler.getExternal )
+    app.get('/hacker-news', hackerNewsHandler.get )
+    app.get('/hacker-news/:id/delete', hackerNewsHandler.delete)
     return app;
 }
 
