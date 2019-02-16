@@ -1,19 +1,36 @@
 const functions = require('firebase-functions');
 const express = require('express');
-const { HackerNewsHandler } = require('./src/hacker-news')
 const mongoose = require('mongoose');
 const axios = require('axios');
+const schedule = require('node-schedule');
+const { DatabaseConfig } = require('./src/database');
+const { 
+    HackerNewsRouter, 
+    HackerNews, 
+    HackerNewsProxyService, 
+    HackerNewsService, 
+    HackerNewsScheduleService, 
+    HackerNewsDatabaseService
+} = require('./src/hacker-news')
 
-mongoose.connect('mongodb://ealiaga:EvrEvrEvr@cluster0-shard-00-00-6zdiu.gcp.mongodb.net:27017,cluster0-shard-00-01-6zdiu.gcp.mongodb.net:27017,cluster0-shard-00-02-6zdiu.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true', { useNewUrlParser: true });
 
 const app = express();
 
-const hackerNewsHandler = HackerNewsHandler({ axios });
+const databaseConfig = DatabaseConfig({ mongoose });
+databaseConfig.connect();
+
+const hackerNewsRouter = HackerNewsRouter({ });
+const hackerNewsProxyService = HackerNewsProxyService({ axios });
+const hackerNewsDatabaseService = HackerNewsDatabaseService({ HackerNews });
+const hackerNewsService = HackerNewsService({ hackerNewsProxyService, hackerNewsDatabaseService });
+const hackerNewsScheduleService = HackerNewsScheduleService({ schedule, hackerNewsService });
+
+hackerNewsScheduleService.getDataNow();
+hackerNewsScheduleService.getDataEveryHour();
 
 const createServer = () => {
-    app.get('/hacker-news/external', hackerNewsHandler.getExternal )
-    app.get('/hacker-news', hackerNewsHandler.get )
-    app.get('/hacker-news/:id/delete', hackerNewsHandler.delete)
+    app.get('/hacker-news', hackerNewsRouter.get )
+    app.get('/hacker-news/:id/delete', hackerNewsRouter.delete)
     return app;
 }
 
