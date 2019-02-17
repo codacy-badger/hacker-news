@@ -70,7 +70,8 @@ jobs:
           command: |
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
                   npm run build-prod
-                  cd functions && npm install 
+                  cd functions && npm install
+                  cd ..
                   ./node_modules/.bin/firebase deploy --token=${FIREBASE_TOKEN} --non-interactive
               else
                   echo "ERROR: not deploy branch ${CIRCLE_BRANCH}"
