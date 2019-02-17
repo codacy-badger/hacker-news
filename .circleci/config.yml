@@ -36,20 +36,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
      
-      # Test the source code
-      - run:
-          name: Testing
-          command: npm run test
 
       # Install project dependencies Functions
       - run:
           name: Install local dependencies Functions
           command: cd functions && npm install
-
-      # Test the source code
-      - run:
-          name: Testing Functions
-          command: cd functions &&  npm run test
 
       - run:
           name: Building
