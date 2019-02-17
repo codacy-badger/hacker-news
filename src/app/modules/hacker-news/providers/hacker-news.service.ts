@@ -24,7 +24,8 @@ export class HackerNewsService {
                             title: d.title,
                             author: d.author,
                             url: d.url,
-                            createdAt: d.createdAt
+                            createdAt: d.createdAt,
+                            show: false
                         };
                         hackerNewsList = [...hackerNewsList, hackerNews];
                     });

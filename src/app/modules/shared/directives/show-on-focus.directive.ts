@@ -1,26 +1,21 @@
 import { Directive, HostListener, Input } from '@angular/core';
+import { HackerNew } from '../../hacker-news/models/hacker-new';
 
 @Directive({
     selector: '[appShowOnFocus]'
 })
 export class ShowOnFocusDirective {
 
-    @Input() appShowOnFocus: boolean;
+    @Input() appShowOnFocus: HackerNew;
 
     @HostListener('mouseenter') onMouseEnter(){
-        this.appShowOnFocus = true;
-        console.log('onMouseEnter ', this.appShowOnFocus);
-       
+        this.appShowOnFocus.show = true;
     }
 
     @HostListener('mouseleave') onMouseLeave(){
-        this.appShowOnFocus = false;
-        console.log('onMouseLeave ', this.appShowOnFocus);
-        
+        this.appShowOnFocus.show = false;
     }
 
-    constructor() { 
-        console.log('ShowOnFocusDirective ', this.appShowOnFocus);
-    }
+    constructor(){}
 
 }

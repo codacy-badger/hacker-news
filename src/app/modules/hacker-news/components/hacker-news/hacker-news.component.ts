@@ -28,4 +28,13 @@ export class HackerNewsComponent implements OnInit, OnDestroy {
         this.subs.unsubscribe();
     }
 
+    selectRow( hackerNews : HackerNew ){
+        window.open(hackerNews.url, '_blank');
+    }
+
+    delete($event: any, hackerNews : HackerNew ){
+        $event.stopPropagation();
+        console.log( hackerNews );
+        
+    }
 }

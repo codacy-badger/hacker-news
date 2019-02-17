@@ -5,5 +5,6 @@ export interface HackerNew {
     author: string;
     url: string;
     createdAt: Date;
+    show: boolean;
 
 }
