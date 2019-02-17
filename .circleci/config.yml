@@ -35,12 +35,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-     
 
-      # Install project dependencies Functions
-      - run:
-          name: Install local dependencies Functions
-          command: cd functions && npm install
 
       - run:
           name: Building
@@ -76,8 +71,6 @@ jobs:
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
                   npm run build-prod
                   ./node_modules/.bin/firebase deploy --token=${FIREBASE_TOKEN} --non-interactive
-
-                  cd functions && npm install && ./node_modules/.bin/firebase deploy --token=${FIREBASE_TOKEN} --non-interactive
               else
                   echo "ERROR: not deploy branch ${CIRCLE_BRANCH}"
                   exit 1

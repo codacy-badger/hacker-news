@@ -1,3 +1,7 @@
+### Serverless Architecture
+
+![alt text](https://raw.githubusercontent.com/ealiaga/hacker-news/master/src/assets/Hacker-news-Architecture.png)
+
 # HackerNews
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
