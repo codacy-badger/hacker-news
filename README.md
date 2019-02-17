@@ -1,4 +1,6 @@
-### Serverless Architecture
+[![CircleCI](https://circleci.com/gh/ealiaga/hacker-news.svg?style=svg)](https://circleci.com/gh/ealiaga/hacker-news)
+
+### Serverless Architecture Deployment
 
 ![alt text](https://raw.githubusercontent.com/ealiaga/hacker-news/master/src/assets/Hacker-news-Architecture.png)
 
