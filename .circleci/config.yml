@@ -78,7 +78,6 @@ jobs:
                   ./node_modules/.bin/firebase deploy --token=${FIREBASE_TOKEN} --non-interactive
 
                   # cd functions && ./node_modules/.bin/firebase deploy --token=${FIREBASE_TOKEN} --non-interactive
-              
               else
                   echo "ERROR: not deploy branch ${CIRCLE_BRANCH}"
                   exit 1
