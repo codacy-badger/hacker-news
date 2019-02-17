@@ -1,13 +1,18 @@
-const router = ({ hackerNewsDatabaseService }) => ({
+const router = ({ hackerNewsDatabaseService, hackerNewsDeletedDatabaseService }) => ({
     
     get: async(req, res) => {
-        const result = await hackerNewsDatabaseService.get();
+        const { token } = req.params;
+
+        const hackerNewsDeleted = await hackerNewsDeletedDatabaseService.getByUserId( token );
+        const deleted = hackerNewsDeleted.map(x => x.objectID);
+        const result = await hackerNewsDatabaseService.getNotInDeleted(deleted);
+
         res.send(result);
     },
 
-    delete: (req, res) => {
-        const { id } = req.params;
-        
+    delete: async(req, res) => {
+        const { id, token } = req.params;
+        const result = await hackerNewsDeletedDatabaseService.save(id, token);
         res.send(result)
     }
 })

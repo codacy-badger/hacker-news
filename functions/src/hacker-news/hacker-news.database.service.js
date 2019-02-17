@@ -15,8 +15,8 @@ const service = ({ HackerNews }) => ({
         return dataSaved;
     },
 
-    get: async() => {
-        const data = await HackerNews.find({}).sort({'createdAt': -1}).exec();
+    getNotInDeleted: async(objectIDdeletedArray) => {
+        const data = await HackerNews.find({ 'objectID' : { '$nin': objectIDdeletedArray }}).sort({'createdAt': -1}).exec();
         return data;
     }
 

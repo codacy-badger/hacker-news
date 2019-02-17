@@ -35,4 +35,8 @@ export class HackerNewsService {
             )
         );
     }
+
+    delete( objectId: string ): Observable<any>{
+        return this.proxy.delete(objectId);
+    }
 }

@@ -17,6 +17,10 @@ export class HackerNewsComponent implements OnInit, OnDestroy {
     constructor(private service: HackerNewsService) { }
 
     ngOnInit() {
+        this.getHackerNews();
+    }
+
+    getHackerNews(){
         this.subs = this.service.getHackerNews().subscribe(
             hackerNews => {
                 this.$hackerNews = hackerNews;
@@ -34,7 +38,10 @@ export class HackerNewsComponent implements OnInit, OnDestroy {
 
     delete($event: any, hackerNews : HackerNew ){
         $event.stopPropagation();
-        console.log( hackerNews );
-        
+        this.service.delete(hackerNews.objectID).subscribe(
+            result => {
+                this.getHackerNews();
+            }
+        );
     }
 }

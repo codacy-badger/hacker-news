@@ -11,7 +11,9 @@ const {
     HackerNewsProxyService, 
     HackerNewsService, 
     HackerNewsScheduleService, 
-    HackerNewsDatabaseService
+    HackerNewsDatabaseService,
+    HackerNewsDeleted,
+    HackerNewsDeletedDatabaseService
 } = require('./src/hacker-news')
 
 
@@ -21,8 +23,9 @@ app.use( cors({ origin: true }) );
 const databaseConfig = DatabaseConfig({ mongoose });
 databaseConfig.connect();
 
+const hackerNewsDeletedDatabaseService = HackerNewsDeletedDatabaseService({ HackerNewsDeleted });
 const hackerNewsDatabaseService = HackerNewsDatabaseService({ HackerNews });
-const hackerNewsRouter = HackerNewsRouter({ hackerNewsDatabaseService });
+const hackerNewsRouter = HackerNewsRouter({ hackerNewsDatabaseService, hackerNewsDeletedDatabaseService });
 const hackerNewsProxyService = HackerNewsProxyService({ axios });
 const hackerNewsService = HackerNewsService({ hackerNewsProxyService, hackerNewsDatabaseService });
 const hackerNewsScheduleService = HackerNewsScheduleService({ schedule, hackerNewsService });
@@ -31,8 +34,8 @@ hackerNewsScheduleService.getDataNow();
 hackerNewsScheduleService.getDataEveryHour();
 
 const createServer = () => {
-    app.get('/hacker-news', hackerNewsRouter.get )
-    app.get('/hacker-news/:id/delete', hackerNewsRouter.delete)
+    app.get('/hacker-news/:token', hackerNewsRouter.get )
+    app.get('/hacker-news/:token/delete/:id', hackerNewsRouter.delete)
     return app;
 }
 
