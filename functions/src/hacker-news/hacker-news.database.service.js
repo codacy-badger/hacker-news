@@ -16,7 +16,7 @@ const service = ({ HackerNews }) => ({
     },
 
     get: async() => {
-        const data = await HackerNews.find({}).exec();
+        const data = await HackerNews.find({}).sort({'createdAt': -1}).exec();
         return data;
     }
 

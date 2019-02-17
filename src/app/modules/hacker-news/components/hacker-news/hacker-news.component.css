@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+}
+
+
+tr.mat-row:hover {
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.title, .created-at {
+    color: #333333;
+}
+.author {
+    color: #999999;
+}

@@ -12,6 +12,7 @@ export class HackerNewsComponent implements OnInit, OnDestroy {
 
     $hackerNews: HackerNew[];
     subs: Subscription;
+    displayedColumns: string[] = ['title', 'author', 'date', 'delete'];
 
     constructor(private service: HackerNewsService) { }
 
